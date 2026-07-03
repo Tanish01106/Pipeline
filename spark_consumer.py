@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-
+import json
 spark = SparkSession.builder \
     .appName("PipelineConsumer") \
     .config("spark.jars.packages", "org.apache.spark:spark-sql-kafka-0-10_2.13:3.5.0") \
@@ -12,4 +12,9 @@ df = spark.readStream \
     .option("startingOffsets", "earliest") \
     .load()
 
+query = json_df.writeStream \
+    .format("console") \
+    .outputMode("append") \
+    .start()
 
+query.awaitTermination()
