@@ -5,7 +5,7 @@ from pyspark.sql.functions import from_json
 
 spark = SparkSession.builder \
     .appName("PipelineConsumer") \
-    .config("spark.jars.packages", "org.apache.spark:spark-sql-kafka-0-10_2.13:3.5.0") \
+    .config("spark.jars.packages", "org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1")\
     .getOrCreate()
 
 df = spark.readStream \
