@@ -37,6 +37,16 @@ login_schema = StructType([
 
 final_df= parsed_df.select(from_json(col=("json_data"),schema=login_schema).alias("data")).select("data.*")
 
+def aggregation(final_df):
+    columns_lst=final_df.columns
+    if "city" in columns_lst:
+        grouped=final_df.groupby("city")
+        grouped.sum()
+
+    else:
+        print("Column Name is not exist")
+
+
 
 query = final_df.writeStream \
     .format("console") \
