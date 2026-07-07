@@ -17,7 +17,7 @@ df = spark.readStream \
 
 parsed_df=df.selectExpr("CAST(value as string) as json_data")
 
-login_schema = StructType([
+login_schema = StructType([ 
     StructField("user_id", IntegerType(), True),
     StructField("name", StringType(), True),
     StructField("email", StringType(), True),
